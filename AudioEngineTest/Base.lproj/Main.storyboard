@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <scenes>
+        <!--First View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="FirstViewController" customModule="AudioEngineTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yJj-t5-Z1y">
+                                <rect key="frame" x="273" y="285" width="54" height="30"/>
+                                <state key="normal" title="Prepare">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="svd-Vd-YZv" kind="show" id="yKH-cU-f3I"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yJj-t5-Z1y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hJ1-3N-Y8e"/>
+                            <constraint firstItem="yJj-t5-Z1y" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kx4-Pa-0OI"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="Frb-O9-srt">
+            <objects>
+                <viewController id="svd-Vd-YZv" customClass="SecondViewController" customModule="AudioEngineTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hoq-z4-YUU"/>
+                        <viewControllerLayoutGuide type="bottom" id="uwA-JT-BVu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0TM-d7-uHk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uR3-fY-8G1">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Prepare" id="0U8-ZI-19b">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="Znr-YH-hAy">
+                                            <connections>
+                                                <segue destination="rhB-CT-Uv4" kind="unwind" unwindAction="unwindFromSecond:" id="19O-M7-hsZ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7Z-JX-fsc">
+                                <rect key="frame" x="284" y="285" width="33" height="30"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="7Gd-4r-LuI" kind="show" identifier="openThirdController" id="X2V-9R-Oo9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="S7Z-JX-fsc" firstAttribute="centerY" secondItem="0TM-d7-uHk" secondAttribute="centerY" id="Eu1-wb-EJ8"/>
+                            <constraint firstItem="uR3-fY-8G1" firstAttribute="top" secondItem="0TM-d7-uHk" secondAttribute="top" id="JlJ-Or-CYU"/>
+                            <constraint firstAttribute="trailing" secondItem="uR3-fY-8G1" secondAttribute="trailing" id="dNg-35-UVu"/>
+                            <constraint firstItem="S7Z-JX-fsc" firstAttribute="centerX" secondItem="uR3-fY-8G1" secondAttribute="centerX" id="e1E-fb-U8P"/>
+                            <constraint firstItem="uR3-fY-8G1" firstAttribute="leading" secondItem="0TM-d7-uHk" secondAttribute="leading" id="mVp-TV-wqp"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jPu-5x-VFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="rhB-CT-Uv4" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1069" y="429"/>
+        </scene>
+        <!--Third View Controller-->
+        <scene sceneID="6cj-Nn-WKd">
+            <objects>
+                <viewController id="7Gd-4r-LuI" customClass="ThirdViewController" customModule="AudioEngineTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="u15-O1-siY"/>
+                        <viewControllerLayoutGuide type="bottom" id="ze7-r1-UcD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rZZ-bc-2tA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0M-33-9D0">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Start" id="gCm-od-B3z"/>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8W-x0-ikw">
+                                <rect key="frame" x="274" y="285" width="53" height="30"/>
+                                <state key="normal" title="Unwind">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="sYa-gP-pkl" kind="unwind" identifier="unwindToSecond" unwindAction="unwindFromThird:" id="7c7-TI-Z3V"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="I0M-33-9D0" secondAttribute="trailing" id="0hk-Bk-XNz"/>
+                            <constraint firstItem="I0M-33-9D0" firstAttribute="leading" secondItem="rZZ-bc-2tA" secondAttribute="leading" id="6sf-Hb-WJ9"/>
+                            <constraint firstItem="s8W-x0-ikw" firstAttribute="centerY" secondItem="rZZ-bc-2tA" secondAttribute="centerY" id="9YJ-ca-GWn"/>
+                            <constraint firstItem="s8W-x0-ikw" firstAttribute="centerX" secondItem="I0M-33-9D0" secondAttribute="centerX" id="k7t-Vt-ngH"/>
+                            <constraint firstItem="I0M-33-9D0" firstAttribute="top" secondItem="rZZ-bc-2tA" secondAttribute="top" id="lEF-kD-EUf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ucQ-Nx-RSZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="sYa-gP-pkl" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1854" y="429"/>
+        </scene>
+    </scenes>
+</document>
