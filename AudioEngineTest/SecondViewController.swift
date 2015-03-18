@@ -8,12 +8,27 @@ import AVFoundation
 
 class SecondViewController: UIViewController {
 
-    var engine: AVAudioEngine = AVAudioEngine()
-    var environmentNode = AVAudioEnvironmentNode()
-    var nodes = [String: AVAudioPlayerNode]()
+    var engine: AVAudioEngine!
+    var nodes: [String: AVAudioPlayerNode]!
+    var format: AVAudioFormat!
     
+    @IBAction func unwindFromThird(segue: UIStoryboardSegue) {
+    }
     
-    private func initialiseNode(filename: String, loop: Bool)-> AVAudioPlayerNode {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.nodes = [:]
+        self.engine = AVAudioEngine()
+        
+        initialiseNode("buffer", loop: true)
+        initialiseNode("file", loop: false)
+        
+        engine.prepare()
+    }
+
+    
+    private func initialiseNode(filename: String, loop: Bool) {
         
         var fileError: NSError?
         let file = AVAudioFile(forReading: NSURL(
@@ -21,12 +36,14 @@ class SecondViewController: UIViewController {
         )
         
         let sourceNode = AVAudioPlayerNode()
+        self.format = file.processingFormat
+        
         engine.attachNode(sourceNode)
-        engine.connect(sourceNode, to: environmentNode, format: file.processingFormat)
+        engine.connect(sourceNode, to: engine.mainMixerNode, format: self.format)
         
         if (loop) {
             let fileCapacity = UInt32(file.length)
-            let buffer = AVAudioPCMBuffer(PCMFormat: sourceNode.outputFormatForBus(0), frameCapacity: fileCapacity)
+            let buffer = AVAudioPCMBuffer(PCMFormat: format, frameCapacity: fileCapacity)
             var bufferError: NSError?
             file.readIntoBuffer(buffer, error:&bufferError)
             sourceNode.scheduleBuffer(buffer!, atTime: nil, options: .Loops, completionHandler: nil)
@@ -35,25 +52,8 @@ class SecondViewController: UIViewController {
         }
         
         self.nodes[filename] = sourceNode
-        return sourceNode
     }
     
-    @IBAction func unwindFromThird(segue: UIStoryboardSegue) {
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        environmentNode.renderingAlgorithm = .HRTF
-        engine.attachNode(environmentNode)
-        engine.connect(environmentNode, to: engine.mainMixerNode, format: engine.mainMixerNode.outputFormatForBus(0))
-        
-        initialiseNode("buffer", loop: true)
-        initialiseNode("file", loop: false)
-        
-        engine.prepare()
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -67,10 +67,14 @@ class SecondViewController: UIViewController {
             var vc = segue.destinationViewController as ThirdViewController
             vc.nodes = self.nodes
             vc.engine = self.engine
+            vc.format = self.format
         }
     }
     
     deinit {
+        self.nodes = nil
+        self.engine = nil
+
         println("Deinit SecondViewController")
     }
 }
